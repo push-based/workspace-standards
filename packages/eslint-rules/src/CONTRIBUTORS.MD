@@ -1,4 +1,6 @@
-### tags.ts
+# Design Decisions
+
+## utils/tags.ts
 
 Functions return `null` or `ValidationError` where `ValidationError` is any other truthy value. 
 This API design has a better DX compared to the alternatives.
