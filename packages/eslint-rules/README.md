@@ -45,4 +45,4 @@ This plugin has one pre-defined configurations:
 
 ## Rules
 
-Documentation for individual rules may be found [here](https://rx-angular.io/docs/eslint-plugin/rules).
+Documentation for individual rules may be found [here](???).
