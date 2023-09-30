@@ -39,8 +39,10 @@ export default {
   },
   create: (context) => {
     const configuration = context.options[0] || {};
-    const validTypes = configuration.validTypes;
-
+    const validTypes: string[] = configuration.validTypes;
+    if(validTypes.some(type => type.startsWith('type:'))) {
+      throw new Error(`validTypes can\`t start with "type:". e.g. ["app"] instead of ["type:app"]`)
+    }
     return ({
       "Program:exit": (node) => {
         const fileName = context.getFilename();

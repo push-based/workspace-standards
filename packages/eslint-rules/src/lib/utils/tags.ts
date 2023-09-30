@@ -23,11 +23,13 @@ export function typesValid(
     .filter(tag => tag.startsWith('type:'))
   const invalidTypeTags: string[] = types
     .filter(tag => {
-      console.log('type tag', tag, validTags.includes(tag), validTags)
+      console.log(`tag: ${tag} is ${!validTags.includes(tag)} in ${validTags}`);
       return !validTags.includes(tag)
     });
 
+
   if (invalidTypeTags.length > 0) {
+    console.log(`invalid types tags: ${invalidTypeTags} found in ${types} valid tags are ${validTags}`);
     return invalidTypeTags;
   }
 

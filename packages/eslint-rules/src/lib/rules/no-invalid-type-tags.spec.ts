@@ -10,7 +10,7 @@ const ruleTester = new RuleTester({
 });
 
 const otherTypes = ["scope:client"];
-const validTypes = ["type:app", "type:lib"];
+const validTypes = ["app", "lib"];
 const wrongTypes = ["type:wrong-type-1", "type:wrong-type-2"];
 
 ruleTester.run(EMPTY_MESSAGE_ID, rule, {

@@ -14,8 +14,8 @@ describe('tagsEmpty', () => {
 });
 
 const validTypes = ['app','lib'];
-describe('invalidTypes', () => {
-  it('should return null for a packageJson with undefined tags property', () => {
+describe('typesValid', () => {
+  it('should return null for a packageJson with defined tags property', () => {
     expect(typesValid({tags: ["type:app", "scope:lib"]}, validTypes)).toBe(null);
   });
 
