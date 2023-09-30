@@ -1,6 +1,6 @@
 # @push-based/repo-sync/eslint-plugin
 
-> Tools and integrations to enforce standards in a poly or mono repository setup.
+> eslint rules to enforce standards in a poly or mono repository setup.
 
 ## Installation
 
