@@ -18,13 +18,13 @@ export function typesValid(
   packageJson: Record<'tags', string[]>,
   validTypes: string[]
 ): ValidatorResult<string[]> {
-
+  const validTags = validTypes.map(type => `type:${type}`);
   const types = packageJson.tags
     .filter(tag => tag.startsWith('type:'))
   const invalidTypeTags: string[] = types
     .filter(tag => {
-      const type = tag.split('type:').pop() as string;
-      !validTypes.includes(type)
+      console.log('type tag', tag, validTags.includes(tag), validTags)
+      return !validTags.includes(tag)
     });
 
   if (invalidTypeTags.length > 0) {
