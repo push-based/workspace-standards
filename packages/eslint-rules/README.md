@@ -1,11 +1,48 @@
-# eslint-rules
+# @push-based/repo-sync/eslint-plugin
 
-This library was generated with [Nx](https://nx.dev).
+> Tools and integrations to enforce standards in a poly or mono repository setup.
 
-## Building
+## Installation
 
-Run `nx build eslint-rules` to build the library.
+If you haven't already, install `@typescript-eslint/parser`:
 
-## Running unit tests
+```bash
+npm install --save-dev @typescript-eslint/parser
+```
 
-Run `nx test eslint-rules` to execute the unit tests via [Jest](https://jestjs.io).
+Install the package:
+
+```bash
+npm install --save-dev @push-based/repo-sync
+```
+
+To use the recommended ruleset, extend the configuration in your ESLint config (e.g. `.eslintrc.json`):
+
+```json
+{
+  "extends": ["repo-sync/recommended"]
+}
+```
+
+Alternatively, if you prefer a more manual approach, add the plugin to your ESLint config, configure parser and enable whatever rules you chose:
+
+```json
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["repo-sync"],
+  "rules": {
+    "projectJson/no-empty-tags": "error",
+    "projectJson/no-invalid-type-tags": "error"
+  }
+}
+```
+
+## Configurations
+
+This plugin has one pre-defined configurations:
+
+- `@repo-sync/recommended` is recommended for most Nx repositories
+
+## Rules
+
+Documentation for individual rules may be found [here](https://rx-angular.io/docs/eslint-plugin/rules).

@@ -12,7 +12,6 @@
         "main": "packages/eslint-rules/src/index.ts",
         "tsConfig": "packages/eslint-rules/tsconfig.lib.json",
         "assets": ["packages/eslint-rules/*.md"],
-        "generatePackageJson": true,
         "format": ["esm"]
       }
     },

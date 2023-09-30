@@ -1,31 +1,36 @@
 import { Rule } from "eslint";
-import { tagsEmpty } from "../utils/tags";
+import { ErrorObject, tagsEmpty, typesValid } from "../utils/tags";
 
-export const MESSAGE_ID = "projectJson/no-empty-tags" as const;
+export const INVALID_MESSAGE_ID = "projectJson/no-invalid-type-tags" as const;
+export const EMPTY_MESSAGE_ID = "projectJson/no-empty-type-tags" as const;
+
+export const invalidTagsMessage = (invalidTypeTags: ErrorObject<string[]>) => `${INVALID_MESSAGE_ID}: ${invalidTypeTags.join(', ')}`
 
 export default {
   meta: {
     type: "problem",
     docs: {
-      description: "Ensure tags are filled in `package.json`",
+      description: "Ensure tags in `package.json` have valid types",
       category: "Best Practices",
       recommended: true
     },
     fixable: "code",
     messages: {
-      [MESSAGE_ID]:
-        "A `project.json` file should have tags configured"
+      [EMPTY_MESSAGE_ID]:
+        "A `project.json` file should have valid tags configured",
+      [INVALID_MESSAGE_ID]:
+        "Only valid type tags are allowed"
     },
     schema: [
       {
         type: "object",
         properties: {
-          defaultTags: {
+          validTypes: {
             type: "array",
             items: {
               type: "string"
             },
-            uniqueItems: true,
+            uniqueItems: true
           }
         },
         additionalProperties: false
@@ -34,6 +39,7 @@ export default {
   },
   create: (context) => {
     const configuration = context.options[0] || {};
+    const validTypes = configuration.validTypes;
 
     return ({
       "Program:exit": (node) => {
@@ -56,16 +62,19 @@ export default {
           });
           return;
         }
-
         if (tagsEmpty(packageJson)) {
           context.report({
             node,
-            messageId: MESSAGE_ID,
-            fix: (fixer) => {
-              const _content = JSON.parse(content);
-              _content.tags = configuration.defaultTags || [];
-              return fixer.replaceText(node, JSON.stringify(_content, null, 2));
-            }
+            messageId: EMPTY_MESSAGE_ID
+          });
+          return;
+        }
+        const invalidTypesError = typesValid(packageJson, validTypes)
+        if (invalidTypesError) {
+          context.report({
+            node,
+            // messageId: INVALID_MESSAGE_ID,
+            message: invalidTagsMessage(invalidTypesError)
           });
           return;
         }

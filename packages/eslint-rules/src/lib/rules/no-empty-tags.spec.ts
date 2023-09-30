@@ -1,37 +1,68 @@
-import { RuleTester } from 'eslint';
-import rule from './no-empty-tags';  // update this path to point to your rule file
+import { RuleTester } from "eslint";
+import rule, { MESSAGE_ID } from "./no-empty-tags";
 
 const ruleTester = new RuleTester({
-  parser: require.resolve('@typescript-eslint/parser'),
+  parser: require.resolve("@typescript-eslint/parser"),
   parserOptions: {
     ecmaVersion: 2020,
-    sourceType: 'module',
-  },
+    sourceType: "module"
+  }
 });
 
-ruleTester.run('no-empty-tags', rule, {
+ruleTester.run(MESSAGE_ID, rule, {
   valid: [
+    // configured tags
     {
-      filename: 'valid-package.json',
+      filename: "package.json",
       code: JSON.stringify({
         name: "my-lib",
         tags: ["scope:client", "type:app"]
-      }, null, 2),
-      options: [{ validTags: ["type:app"] }],
+      }, null, 2)
     },
+    // other file name than `package.json`
+    {
+      filename: "random.json",
+      code: JSON.stringify({}, null, 2)
+    }
   ],
   invalid: [
+    // undefined
     {
-      filename: 'invalid-package.json',
+      filename: "package.json",
+      code: JSON.stringify({
+        tags: []
+      }, null, 2),
+      errors: [{ messageId: "projectJson/no-empty-tags", type: "Program" }],
+      output: JSON.stringify({
+        tags: []
+      }, null, 2)
+    },
+    // empty
+    {
+      filename: "package.json",
+      code: JSON.stringify({
+        tags: []
+      }, null, 2),
+      errors: [{ messageId: "projectJson/no-empty-tags", type: "Program" }],
+      output: JSON.stringify({
+        tags: []
+      }, null, 2)
+    },
+    // defaults
+    {
+      filename: "package.json",
       code: JSON.stringify({
         name: "my-app"
       }, null, 2),
-      errors: [{ messageId: 'no-empty-tags', type: 'Program' }],
-      options: [{ validTags: ["type:app", "another:tag"] }],
+      errors: [{ messageId: "projectJson/no-empty-tags", type: "Program" }],
+      options: [{ defaultTags: ["type:app", "another:tag"] }],
       output: JSON.stringify({
         name: "my-app",
-        tags: ["type:app"]
+        "tags": [
+          "type:app",
+          "another:tag"
+        ]
       }, null, 2)
     },
-  ],
+  ]
 });
