@@ -1,0 +1,39 @@
+{
+  "name": "eslint-rules",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/eslint-rules/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/eslint-rules",
+        "main": "packages/eslint-rules/src/index.ts",
+        "tsConfig": "packages/eslint-rules/tsconfig.lib.json",
+        "assets": ["packages/eslint-rules/*.md"],
+        "generatePackageJson": true,
+        "format": ["esm"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "packages/eslint-rules/**/*.ts",
+          "packages/eslint-rules/package.json"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/packages/eslint-rules"
+      }
+    }
+  },
+  "tags": []
+}
