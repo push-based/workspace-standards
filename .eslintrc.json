@@ -5,6 +5,7 @@
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "extends": ["plugin:@nx/typescript"],
       "rules": {
       }
     },

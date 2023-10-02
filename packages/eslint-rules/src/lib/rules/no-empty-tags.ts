@@ -1,7 +1,7 @@
 import { Rule } from "eslint";
 import { tagsEmpty } from "../utils/tags";
 
-export const MESSAGE_ID = "projectJson/no-empty-tags" as const;
+export const MESSAGE_ID = "empty-tags" as const;
 
 export default {
   meta: {
@@ -43,13 +43,14 @@ export default {
         }
 
         const content = context.getSourceCode().getText(node);
-        let packageJson;
 
+        let packageJson;
         try {
           packageJson = JSON.parse(content);
         } catch {
           // @Notice: It is best practice to use context#report instead of throwing an error.
           // However, the json parser will throw before in case an invalid json is provided.
+          // So you don't reach this line in reality
           context.report({
             node,
             message: "Unable to parse package.json."
@@ -63,7 +64,7 @@ export default {
             messageId: MESSAGE_ID,
             fix: (fixer) => {
               const _content = JSON.parse(content);
-              _content.tags = configuration.defaultTags || [];
+              _content.tags = configuration.defaultTags || ['untagged'];
               return fixer.replaceText(node, JSON.stringify(_content, null, 2));
             }
           });

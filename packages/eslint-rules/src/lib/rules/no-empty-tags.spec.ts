@@ -32,7 +32,7 @@ ruleTester.run(MESSAGE_ID, rule, {
       code: JSON.stringify({
         tags: []
       }, null, 2),
-      errors: [{ messageId: "projectJson/no-empty-tags", type: "Program" }],
+      errors: [{ messageId: "nx/no-empty-tags", type: "Program" }],
       output: JSON.stringify({
         tags: []
       }, null, 2)
@@ -43,7 +43,7 @@ ruleTester.run(MESSAGE_ID, rule, {
       code: JSON.stringify({
         tags: []
       }, null, 2),
-      errors: [{ messageId: "projectJson/no-empty-tags", type: "Program" }],
+      errors: [{ messageId: "nx/no-empty-tags", type: "Program" }],
       output: JSON.stringify({
         tags: []
       }, null, 2)
@@ -54,7 +54,7 @@ ruleTester.run(MESSAGE_ID, rule, {
       code: JSON.stringify({
         name: "my-app"
       }, null, 2),
-      errors: [{ messageId: "projectJson/no-empty-tags", type: "Program" }],
+      errors: [{ messageId: "nx/no-empty-tags", type: "Program" }],
       options: [{ defaultTags: ["type:app", "another:tag"] }],
       output: JSON.stringify({
         name: "my-app",

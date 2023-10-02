@@ -1,10 +1,10 @@
 import { Rule } from "eslint";
 import { ErrorObject, tagsEmpty, typesValid } from "../utils/tags";
 
-export const INVALID_MESSAGE_ID = "projectJson/no-invalid-type-tags" as const;
-export const EMPTY_MESSAGE_ID = "projectJson/no-empty-type-tags" as const;
+export const INVALID_MESSAGE_ID = "nx/no-invalid-type-tags" as const;
+export const EMPTY_MESSAGE_ID = "nx/no-empty-type-tags" as const;
 
-export const invalidTagsMessage = (invalidTypeTags: ErrorObject<string[]>) => `${INVALID_MESSAGE_ID}: ${invalidTypeTags.join(', ')}`
+export const invalidTagsMessage = (invalidTypeTags: ErrorObject<string[]>) => `${INVALID_MESSAGE_ID}: ${(invalidTypeTags as unknown[]).join(', ')}`
 
 export default {
   meta: {
@@ -40,7 +40,7 @@ export default {
   create: (context) => {
     const configuration = context.options[0] || {};
     const validTypes: string[] = configuration.validTypes;
-    if(validTypes.some(type => type.startsWith('type:'))) {
+    if(validTypes?.some(type => type?.startsWith('type:'))) {
       throw new Error(`validTypes can\`t start with "type:". e.g. ["app"] instead of ["type:app"]`)
     }
     return ({

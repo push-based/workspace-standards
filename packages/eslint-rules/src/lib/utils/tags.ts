@@ -1,4 +1,4 @@
-export type ErrorObject<T = string> = T | any[] | Record<string, any>;
+export type ErrorObject<T = string> = T | unknown[] | Record<string, unknown>;
 export type ValidatorResult<T> = null | ErrorObject<T>;
 
 export function tagsEmpty(packageJson: Record<string, string[]>): ValidatorResult<string> {

@@ -8,11 +8,11 @@
       "executor": "@nx/esbuild:esbuild",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/eslint-rules",
+        "outputPath": "dist/packages/eslint-plugin-nx",
         "main": "packages/eslint-rules/src/index.ts",
         "tsConfig": "packages/eslint-rules/tsconfig.lib.json",
         "assets": ["packages/eslint-rules/*.md"],
-        "format": ["esm"]
+        "format": ["cjs"]
       }
     },
     "lint": {

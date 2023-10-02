@@ -31,8 +31,8 @@ Alternatively, if you prefer a more manual approach, add the plugin to your ESLi
   "parser": "@typescript-eslint/parser",
   "plugins": ["repo-sync"],
   "rules": {
-    "projectJson/no-empty-tags": "error",
-    "projectJson/no-invalid-type-tags": "error"
+    "nx/no-empty-tags": "error",
+    "nx/no-invalid-type-tags": "error"
   }
 }
 ```

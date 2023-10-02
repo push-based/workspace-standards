@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@push-based/eslint-rules": ["packages/eslint-rules/src/index.ts"]
+      "@push-based/eslint-rules": ["packages/eslint-rules/src/index.ts"],
+      "@push-based/utils": ["packages/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

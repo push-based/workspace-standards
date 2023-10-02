@@ -1,7 +1,8 @@
 {
-  "name": "@push-based/nx-eslint-rules",
+  "name": "eslint-plugin-nx",
   "version": "0.0.1",
   "dependencies": {},
   "type": "module",
-  "main": "./index.mjs"
+  "main": "./index.cjs",
+  "tags": []
 }
