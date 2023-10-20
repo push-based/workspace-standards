@@ -2,6 +2,9 @@
 
 ✨ **Tools and integrations to enforce standards in a poly or mono repository setup.** ✨
 
+> audit       +         budget  =  report comparison  
+> validate -> result -> assert --> benchmark  
+
 ## Packages
 
 Repo Sync is made up of different packages that work together or standalone.
