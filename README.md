@@ -19,4 +19,4 @@ Repo Sync is made up of different packages that work together or standalone.
 | [user-flow-integration](./docs)         | light house userflow (pupeteer,playwrite)                                        |
 | [ds-tooling](./docs)                    | design system                                                                    |
 | [perf-tooling](./docs)                  | performance tooling                                                              |
-| [perf-tooling](./docs)                  | a11y                                                                             |
+| [a11y-tooling](./docs)                  | a11y                                                                             |
