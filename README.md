@@ -15,7 +15,7 @@ Repo Sync is made up of different packages that work together or standalone.
 | [eslint-rules](./docs)                  | eslint rules                                                                     |
 | [workspace-validation](./docs)          | automated repository validation                                                  |
 | [nx-workspace-validation](./docs)       | automated nx mono-repository validation                                          |
-| [xn-wv-plugin-code-pushup](./docs)      | chart, assert, print validations                                                 |
+| [xn-wv-plugin-code-pushup](./docs)      | chart, assert, reporting                                                         |
 | [user-flow-integration](./docs)         | light house userflow (pupeteer,playwrite)                                        |
 | [ds-tooling](./docs)                    | design system                                                                    |
 | [perf-tooling](./docs)                  | performance tooling                                                              |
